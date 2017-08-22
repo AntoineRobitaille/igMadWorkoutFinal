@@ -239,7 +239,7 @@
                                             <constraint firstAttribute="height" constant="45" id="fG8-uX-xdK"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="saveToClipboard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vjC-vN-u4c"/>
+                                            <action selector="saveToClipboard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bad-xs-5QF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -289,7 +289,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="3un-BJ-m4U"/>
             </objects>
             <point key="canvasLocation" x="50" y="291"/>
         </scene>
