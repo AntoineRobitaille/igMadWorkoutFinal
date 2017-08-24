@@ -11,6 +11,7 @@ class WorkoutsView: UIViewController
         super.viewDidLoad()
         self.theDatabase = Shared.sharedInstance.getDatabase("db")
     }
+    
     // ============================
     func getDates() -> [String]
     {
@@ -25,16 +26,19 @@ class WorkoutsView: UIViewController
         
         return tempArray
     }
+    
     // ============================
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.theDatabase.count
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell
     {
@@ -47,6 +51,7 @@ class WorkoutsView: UIViewController
         
         return cell
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath)
     {
@@ -55,6 +60,7 @@ class WorkoutsView: UIViewController
         Shared.sharedInstance.theRow = indexPath.row
         performSegue(withIdentifier: "theSegway", sender: nil)
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath)
     {

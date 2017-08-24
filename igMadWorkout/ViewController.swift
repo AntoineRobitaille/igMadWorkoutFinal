@@ -30,10 +30,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
             session!.delegate = self
             session!.activate()
             
-//            if !session.isPaired
-//            {
-//                self.theSynchButton.alpha = 0.0
-//            }
         }
         
         self.theExercise = ""
@@ -41,9 +37,6 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         self.thePickerView.selectRow(0, inComponent: 0, animated: false)
         self.saveUserDefaultIfNeeded()
         
-        //--
-        
-        //--
     }
     // ============================
     //--
@@ -67,7 +60,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
     // ============================
     @available(iOS 9.3, *)
     public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        //..
+
     }
     // ============================
     @available(iOS 9.3, *)
@@ -88,6 +81,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
 
     
     // ============================
+    //Sauvegarde l'information pour pouvoir copier
     @IBAction func saveToClipboard(_ sender: UIButton)
     {
         let alertController = UIAlertController(title: "Alerte", message: "Informations copiées", preferredStyle: UIAlertControllerStyle.alert)
@@ -98,18 +92,11 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         let unSortedEcerciseKeys = Array(self.exerciseAccountability.keys)
         UIPasteboard.general.string = unSortedEcerciseKeys.joined(separator: ",")
     }
+    
     // ============================
+    //Envoie les informations à la montre
     @IBAction func sendToWatch(_ sender: AnyObject)
     {
-        //let databaseToSendToWatch = Shared.sharedInstance.getDatabase("db")
-        //session.sendMessage(databaseToSendToWatch, replyHandler:
-          //  { replyMessage in },
-            //                errorHandler:
-            //{
-              //  error in
-                // catch any errors here
-                //print(error)
-        //})
         
         var dictToSendWach: [String : String] = [:]
 
@@ -126,7 +113,9 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         }
         sendMessage(aDict: dictToSendWach)
     }
+    
     // ============================
+    //Ajoute l'exercice à la liste
     @IBAction func doneButton(_ sender: UIButton)
     {
         self.thePickerView.selectRow(0, inComponent: 0, animated: true)
@@ -141,7 +130,9 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         self.theRepsField.text = ""
         self.theSetsField.text = ""
     }
+    
     // ============================
+    //Sauvegarde l'exercice dans les userDefaults
     fileprivate func saveUserDefaultIfNeeded()
     {
         //self.exerciseAccount.removeObjectForKey("exercises")
@@ -155,7 +146,9 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
             self.exerciseAccountability = self.exerciseAccount.value(forKey: "exercises") as! [String : Int]
         }
     }
+    
     // ============================
+    //Regarde les userDefaults
     func checkForUserDefaultByName(_ theName: String, andUserDefaultObject: UserDefaults) -> Bool
     {
         let userDefaultObject = andUserDefaultObject.object(forKey: theName)
@@ -167,6 +160,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         
         return true
     }
+    
     // ============================
     //methodes pour choix entrainement
     // ============================
@@ -174,7 +168,9 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
     {
         return 1
     }
+    
     // ============================
+    //Code pour le pickerView
      @objc(pickerView:viewForRow:forComponent:reusingView:) func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
     {
        
@@ -200,11 +196,13 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         
         return pickerLabel
     }
+    
     // ============================
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
         return exerciseAccountability.count;   //*** self.exercise....
     }
+    
     // ============================
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
@@ -221,6 +219,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         
         self.theExercise = anArrayOfString[row]
     }
+    
     // ============================
     //methodes pour choix date
     // ============================
@@ -277,6 +276,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         self.accountForExercise(theExercise!)
         self.mAlterts(self.displayWorkout(theDate))
     }
+    
     // ============================
     fileprivate func accountForExercise(_ exerciseName: String)
     {
@@ -286,6 +286,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         self.exerciseAccount.setValue(self.exerciseAccountability, forKey: "exercises")
         self.thePickerView.reloadAllComponents()
     }
+    
     // ============================
     func mAlterts(_ theMessage: String)
     {
@@ -295,6 +296,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         
         self.present(alertController, animated: true, completion: nil)
     }
+    
     // ============================
     func displayWorkout(_ theDate: String) -> String
     {
@@ -316,6 +318,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
         
         return strForDisplay
     }
+    
     // ============================
     func sendMessage(aDict: [String : String]) {
         //----------
@@ -334,7 +337,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
     //----------------------------------------
 }
 
-
+//code pour le format de date
 extension Date
 {
     

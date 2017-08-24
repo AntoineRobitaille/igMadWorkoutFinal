@@ -6,6 +6,7 @@ class TableViewController: UITableViewController
     /* -------------------------------- */
     var theDatabase: [String : [[String : String]]]!
     var theWorkout: [String]!
+    
     /* -------------------------------- */
     override func viewDidLoad()
     {
@@ -16,6 +17,7 @@ class TableViewController: UITableViewController
         self.theDatabase = Shared.sharedInstance.getDatabase("db")
         self.theWorkout = self.fillUpWorkoutArray(self.getDates()[Shared.sharedInstance.theRow])
     }
+    
     /* -------------------------------- */
     func getDates() -> [String]
     {
@@ -30,6 +32,7 @@ class TableViewController: UITableViewController
         
         return tempArray
     }
+    
     /* -------------------------------- */
     func fillUpWorkoutArray(_ theDate: String) -> [String]
     {
@@ -51,21 +54,25 @@ class TableViewController: UITableViewController
         
         return arrToReturn
     }
+    
     /* -------------------------------- */
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
+    
     /* -------------------------------- */
     override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }
+    
     /* -------------------------------- */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.theWorkout.count
     }
+    
     /* -------------------------------- */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -79,13 +86,14 @@ class TableViewController: UITableViewController
         
         return cell
     }
+    
     /* -------------------------------- */
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
     }
-    /* -------------------------------- */
     
+    /* -------------------------------- */
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete
         {
@@ -99,8 +107,7 @@ class TableViewController: UITableViewController
         }
     }
     
-    
-    
+    /* -------------------------------- */
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath)
     {
         //        let itemToMove = self.theWorkout[fromIndexPath.row]
@@ -108,6 +115,7 @@ class TableViewController: UITableViewController
         //        self.theWorkout.insert(itemToMove, atIndex: toIndexPath.row)
     }
     
+    /* -------------------------------- */
     func deleteFromDatabase(_ theDate: String, indexToDelete: Int)
     {
         for (a, b) in self.theDatabase
@@ -124,25 +132,15 @@ class TableViewController: UITableViewController
         }
     }
     
-    
+    /* -------------------------------- */
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool
     {
-        // Return false if you do not want the item to be re-orderable.
         return true
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    // ============================
 }
 
+/* -------------------------------- */
 extension UIColor {
     static func colorWithRedValue(redValue: CGFloat, greenValue: CGFloat, blueValue: CGFloat, alpha: CGFloat) -> UIColor {
         return UIColor(red: redValue/255.0, green: greenValue/255.0, blue: blueValue/255.0, alpha: alpha)

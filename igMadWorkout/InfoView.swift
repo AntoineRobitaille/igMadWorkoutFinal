@@ -9,6 +9,7 @@ class InfoView: UIViewController
     @IBOutlet weak var reorderButton: UIButton!
     var theDatabase: [String : [[String : String]]]!
     var theWorkout: [String]!
+    
     // ============================
     override func viewDidLoad()
     {
@@ -18,6 +19,7 @@ class InfoView: UIViewController
         self.infoDateLabel.text = self.getDates()[Shared.sharedInstance.theRow]
         self.theWorkout = self.fillUpWorkoutArray(self.infoDateLabel.text!)
     }
+    
     // ============================
     @IBAction func reorder(_ sender: UIButton)
     {
@@ -32,6 +34,7 @@ class InfoView: UIViewController
             self.reorderButton.setTitle("EDIT", for: UIControlState())
         }
     }
+    
     // ============================
     func fillUpWorkoutArray(_ theDate: String) -> [String]
     {
@@ -53,6 +56,7 @@ class InfoView: UIViewController
         
         return arrToReturn
     }
+    
     // ============================
     func getDates() -> [String]
     {
@@ -67,17 +71,20 @@ class InfoView: UIViewController
         
         return tempArray
     }
+    
     // ============================
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         self.theTableView.backgroundColor = UIColor.clear
         return self.theWorkout.count
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell
     {
@@ -90,6 +97,7 @@ class InfoView: UIViewController
         
         return cell
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath)
     {
@@ -100,6 +108,7 @@ class InfoView: UIViewController
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
     }
+    
     // ============================
     func deleteFromDatabase(_ theDate: String, indexToDelete: Int)
     {
@@ -116,12 +125,14 @@ class InfoView: UIViewController
             }
         }
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, canMoveRowAtIndexPath indexPath: IndexPath) -> Bool
     {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, moveRowAtIndexPath fromIndexPath: IndexPath, toIndexPath: IndexPath)
     {

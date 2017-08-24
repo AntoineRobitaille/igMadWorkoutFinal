@@ -8,6 +8,7 @@ class Shared: UIViewController
     var savedUserDefault: UserDefaults = UserDefaults.standard
     static let sharedInstance = Shared()
     var theRow: Int!
+    
     // ============================
     func checkForUserDefaultByName(_ theName: String, andUserDefaultObject: UserDefaults) -> Bool
     {
@@ -20,6 +21,7 @@ class Shared: UIViewController
         
         return true
     }
+    
     // ============================
     func  saveOrLoadUserDefaults(_ name: String)
     {
@@ -37,16 +39,19 @@ class Shared: UIViewController
             self.theDatabase = self.savedUserDefault.value(forKey: name) as! [String : [[String : String]]]
         }
     }
+    
     // ============================
     func saveUserDefaultByName(_ theName: String, andUserDefaultObject: UserDefaults, andSomeValue: [String : [[String : String]]])
     {
         andUserDefaultObject.setValue(andSomeValue, forKey: theName)
     }
+    
     // ============================
     func getDatabase(_ name: String) -> [String : [[String : String]]]
     {
         return self.savedUserDefault.value(forKey: name) as! [String : [[String : String]]]
     }
+    
     // ============================
     func saveDatabase(_ valueToSave: [String : [[String : String]]])
     {

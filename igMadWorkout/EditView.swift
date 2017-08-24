@@ -9,17 +9,20 @@ class EditView: UIViewController
     @IBOutlet weak var addExerciseField: UITextField!
     var exerciseAccount: UserDefaults = UserDefaults.standard
     var exerciseAccountability: [String : Int]!
+    
     // ============================
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.exerciseAccountability = self.exerciseAccount.value(forKey: "exercises") as! [String : Int]
     }
+    
     // ============================
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
+    
     // ============================
     @IBAction func addExerciseButton(_ sender: UIButton)
     {
@@ -32,12 +35,14 @@ class EditView: UIViewController
             self.mAlterts("Exercise Added!")
         }
     }
+    
     // ============================
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         self.theTableView.backgroundColor = UIColor.clear
         return self.exerciseAccountability.count
     }
+    
     //-------------
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell
     {
@@ -53,6 +58,7 @@ class EditView: UIViewController
         
         return cell
     }
+    
     //-------------
     func tableView(_ tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: IndexPath)
     {
@@ -65,12 +71,14 @@ class EditView: UIViewController
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
     }
+    
     //-------------
     func textFieldShouldReturn(_ textField: UITextField!) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
+    
     //-------------
     func mAlterts(_ theMessage: String)
     {
