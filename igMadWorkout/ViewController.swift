@@ -90,7 +90,7 @@ class ViewController: UIViewController, WCSessionDelegate, UIPickerViewDelegate,
     // ============================
     @IBAction func saveToClipboard(_ sender: UIButton)
     {
-        let alertController = UIAlertController(title: "Alerte", message: "Informations copiés", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Alerte", message: "Informations copiées", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
         
         self.present(alertController, animated: true, completion: nil)
